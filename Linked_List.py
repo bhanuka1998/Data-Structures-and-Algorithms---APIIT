@@ -39,11 +39,32 @@ class LinkedList:
 
     def insert_middle(self, new_node, value):
         current_node = self.head
-        #self.value = value
-        while current_node.data != value and current_node:
+        while current_node:
+            if current_node.data == value:
+                break
             current_node = current_node.next_node
-        new_node.next_node = current_node.next_node
-        current_node.next_node = new_node
+        if current_node:
+            new_node.next_node = current_node.next_node
+            current_node.next_node = new_node
+        else:
+            print("No such value")
+
+    def delete_node(self, value):
+        previous_node = None
+        current_node = self.head
+        while current_node:
+            if current_node.data == value:
+                break
+            current_node = current_node.next_node
+        previous_node = current_node
+        current_node = current_node.next_node
+        if previous_node == None:
+            self.head = current_node.next_node
+        else:
+            previous_node.next_node = current_node.next_node
+        if current_node.next_node == None:
+            self.tail = previous_node
+        # print(previous_node.data)
 
 
 list_1 = LinkedList()
@@ -52,5 +73,8 @@ list_1.insert_front(Node(data=3))
 list_1.insert_end(Node(data=8))
 list_1.insert_middle(Node(data=4), 5)
 list_1.insert_middle(Node(data=7), 4)
+list_1.insert_middle(Node(data=90), 4)
+list_1.insert_middle(Node(data=7), 80)
+list_1.delete_node(value=5)
 list_1.traverse()
 print(list_1.is_empty())
