@@ -54,16 +54,19 @@ class LinkedList:
         current_node = self.head
         while current_node:
             if current_node.data == value:
+                print("To be deleted", current_node.data)
                 break
+            # current_node = current_node.next_node
+            previous_node = current_node
             current_node = current_node.next_node
-        previous_node = current_node
-        current_node = current_node.next_node
         if previous_node == None:
             self.head = current_node.next_node
         else:
             previous_node.next_node = current_node.next_node
         if current_node.next_node == None:
             self.tail = previous_node
+        else:
+            print("There is no list")
         # print(previous_node.data)
 
 
